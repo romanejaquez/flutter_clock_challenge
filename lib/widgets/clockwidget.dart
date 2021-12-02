@@ -89,10 +89,12 @@ class ClockWidgetState extends State<ClockWidget> {
 
   void onExecuteAnimations() {
     digitalNumberSidesMapping.keys.forEach((side) {
-      setState(() {
-        digitalNumberSideVisible[side] =
-            digitalNumberSidesMapping[side]!.contains(widget.widgetNumber!.value);
-      });
+      if (mounted) {
+        setState(() {
+          digitalNumberSideVisible[side] =
+              digitalNumberSidesMapping[side]!.contains(widget.widgetNumber!.value);
+        });
+      }
     });
   }
 

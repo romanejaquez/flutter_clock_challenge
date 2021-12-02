@@ -151,15 +151,11 @@ class DigitalClockWidgetState extends State<DigitalClockWidget> {
                       ClockWidget(widgetNumber: vNumber4)
                     ],
                   ),
-                  Transform.scale(
-                    scale: 0.5,
-                    alignment: Alignment.topLeft,
-                    child: Row(
-                      children: [
-                        ClockWidget(widgetNumber: vNumber5),
-                        ClockWidget(widgetNumber: vNumber6)
-                      ],
-                    )
+                  Row(
+                    children: [
+                      ClockWidget(widgetNumber: vNumber5),
+                      ClockWidget(widgetNumber: vNumber6)
+                    ],
                   )
                 ],
               ),
