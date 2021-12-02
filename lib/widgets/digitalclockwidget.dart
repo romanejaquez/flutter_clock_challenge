@@ -1,5 +1,7 @@
 
 // This is the wrapper class around my digital clock
+import 'package:clock_challenge/helpers/clocktheme.dart';
+import 'package:clock_challenge/helpers/utils.dart';
 import 'package:clock_challenge/widgets/clockwidget.dart';
 import 'package:flutter/material.dart';
 
@@ -31,6 +33,8 @@ class DigitalClockWidgetState extends State<DigitalClockWidget> {
   @override
   Widget build(BuildContext context) {
 
+    ClockTheme clockTheme = Utils.getTheme();
+    
     // parsing the digits out of the provided inputs
     var firstHourDigit = widget.hours![0];
     var secondHourDigit = widget.hours![1];
@@ -51,7 +55,7 @@ class DigitalClockWidgetState extends State<DigitalClockWidget> {
         child: const Icon(Icons.timer, color: Colors.white, size: 30),
         decoration: BoxDecoration(
           boxShadow:[
-            BoxShadow(color: Colors.green.withOpacity(0.6), blurRadius: 20, offset: Offset.zero)
+            BoxShadow(color: clockTheme.shadow2!, blurRadius: 20, offset: Offset.zero)
           ]
         ),
       ),
@@ -59,7 +63,7 @@ class DigitalClockWidgetState extends State<DigitalClockWidget> {
         child: const Icon(Icons.wb_sunny, color: Colors.white, size: 30),
         decoration: BoxDecoration(
           boxShadow:[
-            BoxShadow(color: Colors.green.withOpacity(0.6), blurRadius: 20, offset: Offset.zero)
+            BoxShadow(color: clockTheme.shadow2!, blurRadius: 20, offset: Offset.zero)
           ]
         ),
       ),
@@ -67,7 +71,7 @@ class DigitalClockWidgetState extends State<DigitalClockWidget> {
         child: const Icon(Icons.palette, color: Colors.white, size: 30),
         decoration: BoxDecoration(
           boxShadow:[
-            BoxShadow(color: Colors.green.withOpacity(0.6), blurRadius: 20, offset: Offset.zero)
+            BoxShadow(color: clockTheme.shadow2!, blurRadius: 20, offset: Offset.zero)
           ]
         ),
       ),
@@ -75,7 +79,7 @@ class DigitalClockWidgetState extends State<DigitalClockWidget> {
         child: const Icon(Icons.thermostat, color: Colors.white, size: 30),
         decoration: BoxDecoration(
           boxShadow:[
-            BoxShadow(color: Colors.green.withOpacity(0.6), blurRadius: 20, offset: Offset.zero)
+            BoxShadow(color: clockTheme.shadow2!, blurRadius: 20, offset: Offset.zero)
           ]
         ),
       ),
@@ -83,7 +87,7 @@ class DigitalClockWidgetState extends State<DigitalClockWidget> {
         child: const Icon(Icons.calendar_today, color: Colors.white, size: 30),
         decoration: BoxDecoration(
           boxShadow:[
-            BoxShadow(color: Colors.green.withOpacity(0.6), blurRadius: 20, offset: Offset.zero)
+            BoxShadow(color: clockTheme.shadow2!, blurRadius: 20, offset: Offset.zero)
           ]
         ),
       )

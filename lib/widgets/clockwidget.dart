@@ -1,6 +1,8 @@
 // represents the animation for each individual digit
 // represented as a series of blocks with animations
+import 'package:clock_challenge/helpers/clocktheme.dart';
 import 'package:clock_challenge/helpers/digitalnumbersides.dart';
+import 'package:clock_challenge/helpers/utils.dart';
 import 'package:flutter/material.dart';
 
 class ClockWidget extends StatefulWidget {
@@ -19,18 +21,20 @@ class ClockWidgetState extends State<ClockWidget> {
   static const int fastDuration = 100;
   static const int slowDuration = 500;
 
+  static ClockTheme clockTheme = Utils.getTheme();
   static BoxDecoration numberBoxDecoration = BoxDecoration(
       color: Colors.white,
       borderRadius: BorderRadius.circular(50),
       boxShadow: [
         BoxShadow(
           blurRadius: 20, 
-          color: const Color(0xFF0A340C).withOpacity(0.2), 
+          color: clockTheme.shadow1!, 
           offset: Offset.zero),
-        const BoxShadow(
+        BoxShadow(
           blurRadius: 20, 
-          color: Colors.green, 
-          offset: Offset.zero)
+          color: clockTheme.shadow2!, 
+          offset: Offset.zero
+        )
       ],
       gradient: LinearGradient(
           begin: Alignment.topCenter,
