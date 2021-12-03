@@ -10,7 +10,7 @@ class ClockAnimationService extends ChangeNotifier {
   };
 
   bool showClockAnimation = false;
-  IconData? themeIcon = Icons.ac_unit;
+  IconData? themeIcon;
 
   void setClockAnimationTheme(ClockThemes clockTheme) {
     resetAnimation();
