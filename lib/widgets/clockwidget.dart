@@ -3,6 +3,7 @@
 import 'package:clock_challenge/helpers/clocktheme.dart';
 import 'package:clock_challenge/helpers/digitalnumbersides.dart';
 import 'package:clock_challenge/helpers/utils.dart';
+import 'package:clock_challenge/services/clockanimationservice.dart';
 import 'package:clock_challenge/services/clockthemeservice.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -102,38 +103,51 @@ class ClockWidgetState extends State<ClockWidget> {
           colors: [Colors.white, Colors.white.withOpacity(0.5)]));
 
         Widget digitSidesContainer =
-            Container(width: 40, height: 120, decoration: numberBoxDecoration);
+            Container(width: digitalWidthHeight, height: 120, decoration: numberBoxDecoration);
 
         Widget digitHorizontalContainer =
-            Container(height: 40, decoration: numberBoxDecoration);
+            Container(height: digitalWidthHeight, decoration: numberBoxDecoration);
 
         return widget.isTimeIndicator
-        ? Container(
-            width: digitalWidthHeight,
-            height: 200,
-            margin: const EdgeInsets.all(10),
-            child: Column(
+        ? Consumer<ClockAnimationService>(
+          builder: (context, animService, child) {
+
+            Widget timeIndicatorWidget = animService.themeIcon != null ?
+            SizedBox(
+              width: digitalWidthHeight,
+              height: digitalWidthHeight,
+              child: Icon(animService.themeIcon, color: Colors.white, size: 40))
+              :
+            Container(
+                      width: digitalWidthHeight,
+                      height: digitalWidthHeight,
+                      decoration: numberBoxDecoration
+                  );
+
+            return Container(
+              width: digitalWidthHeight,
+              height: 200,
+              margin: const EdgeInsets.all(10),
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   AnimatedContainer(
                     width: !widget.isTimeEllapsing ? digitalWidthHeight : 0,
                     duration: const Duration(milliseconds: 500),
                     curve: Curves.bounceOut,
-                    child: Container(
-                      width: digitalWidthHeight,
-                      height: digitalWidthHeight,
-                      decoration: numberBoxDecoration),
+                    child: timeIndicatorWidget
                   ),
                   AnimatedContainer(
                     width: widget.isTimeEllapsing ? digitalWidthHeight : 0,
                     duration: const Duration(milliseconds: 500),
                     curve: Curves.bounceOut,
-                    child: Container(
-                      width: digitalWidthHeight,
-                      height: digitalWidthHeight,
-                      decoration: numberBoxDecoration)
+                    child: timeIndicatorWidget
                   )
-                ]))
+                ]
+              )
+            );
+          },
+        )
         : ValueListenableBuilder(
             valueListenable: widget.widgetNumber!,
             builder: (context, value, child) {
