@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ClockTheme {
+  Color? main;
   Color? shadow1;
   Color? shadow2;
   Color? color1;
@@ -11,6 +12,7 @@ class ClockTheme {
   Color? colorShadow;
 
   ClockTheme({
+    this.main,
     this.shadow1,
     this.shadow2,
     this.color1,

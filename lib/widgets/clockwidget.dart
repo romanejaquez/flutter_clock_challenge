@@ -3,7 +3,9 @@
 import 'package:clock_challenge/helpers/clocktheme.dart';
 import 'package:clock_challenge/helpers/digitalnumbersides.dart';
 import 'package:clock_challenge/helpers/utils.dart';
+import 'package:clock_challenge/services/clockthemeservice.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ClockWidget extends StatefulWidget {
   final bool isTimeIndicator;
@@ -21,31 +23,7 @@ class ClockWidgetState extends State<ClockWidget> {
   static const int fastDuration = 100;
   static const int slowDuration = 500;
 
-  static ClockTheme clockTheme = Utils.getTheme();
-  static BoxDecoration numberBoxDecoration = BoxDecoration(
-      color: Colors.white,
-      borderRadius: BorderRadius.circular(50),
-      boxShadow: [
-        BoxShadow(
-          blurRadius: 20, 
-          color: clockTheme.shadow1!, 
-          offset: Offset.zero),
-        BoxShadow(
-          blurRadius: 20, 
-          color: clockTheme.shadow2!, 
-          offset: Offset.zero
-        )
-      ],
-      gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [Colors.white, Colors.white.withOpacity(0.5)]));
-
-  final Container digitSidesContainer =
-      Container(width: 40, height: 120, decoration: numberBoxDecoration);
-
-  final Container digitHorizontalContainer =
-      Container(height: 40, decoration: numberBoxDecoration);
+  
 
   // this is the mapping that reprents which digits get to have a side displayed
   // based on the composition of the digit widget
@@ -100,7 +78,36 @@ class ClockWidgetState extends State<ClockWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return widget.isTimeIndicator
+
+    return Consumer<ClockThemeService>(
+      builder: (context, service, child) {
+        ClockTheme clockTheme = Utils.getTheme();
+        BoxDecoration numberBoxDecoration = BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(50),
+            boxShadow: [
+              BoxShadow(
+                blurRadius: 20, 
+                color: clockTheme.shadow1!, 
+                offset: Offset.zero),
+              BoxShadow(
+                blurRadius: 20, 
+                color: clockTheme.shadow2!, 
+                offset: Offset.zero
+              )
+            ],
+            gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [Colors.white, Colors.white.withOpacity(0.5)]));
+
+        Widget digitSidesContainer =
+            Container(width: 40, height: 120, decoration: numberBoxDecoration);
+
+        Widget digitHorizontalContainer =
+            Container(height: 40, decoration: numberBoxDecoration);
+
+        return widget.isTimeIndicator
         ? Container(
             width: digitalWidthHeight,
             height: 200,
@@ -265,5 +272,7 @@ class ClockWidgetState extends State<ClockWidget> {
                   ]));
             },
           );
-  }
+        }
+      );
+    }
 }

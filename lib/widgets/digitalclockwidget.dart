@@ -2,6 +2,7 @@
 // This is the wrapper class around my digital clock
 import 'package:clock_challenge/helpers/clocktheme.dart';
 import 'package:clock_challenge/helpers/utils.dart';
+import 'package:clock_challenge/widgets/clockthemecolorselection.dart';
 import 'package:clock_challenge/widgets/clockwidget.dart';
 import 'package:flutter/material.dart';
 
@@ -177,6 +178,13 @@ class DigitalClockWidgetState extends State<DigitalClockWidget> {
               children: options,
             )
           ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(40.0),
+          child: Align(
+            alignment: MediaQuery.of(context).orientation == Orientation.portrait ? Alignment.bottomCenter : Alignment.centerRight,
+            child: ClockThemeColorSelection()
+          )
         )
       ],
     );
