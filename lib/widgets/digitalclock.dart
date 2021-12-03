@@ -1,8 +1,12 @@
 import 'dart:async';
+import 'package:clock_challenge/services/clockanimationservice.dart';
+import 'package:clock_challenge/widgets/clockthemeanimation.dart';
+import 'package:clock_challenge/widgets/clockthemeanimationwrapper.dart';
 import 'package:clock_challenge/widgets/digitalclockbg.dart';
 import 'package:clock_challenge/widgets/digitalclockwidget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 /// A basic digital clock.
 ///

@@ -38,6 +38,17 @@ class Utils {
       color5: const Color(0xFF00B1FF),
       main: const Color(0xFF00B1FF),
       colorShadow: const Color(0xFF00354D).withOpacity(0.5)
+    ),
+    ClockThemes.valentine : ClockTheme(
+      shadow1: const Color(0xFF880C0C).withOpacity(0.2),
+      shadow2: const Color(0xFFCC1515),
+      color1: const Color(0xFF880C0C),
+      color2: const Color(0xFFAC0E0E),
+      color3: const Color(0xFFCC1515),
+      color4: const Color(0xFFE61B1B),
+      color5: const Color(0xFFFD2A2A),
+      main: const Color(0xFFFD2A2A),
+      colorShadow: const Color(0xFF880C0C).withOpacity(0.5)
     )
   };
 
@@ -53,5 +64,6 @@ class Utils {
 enum ClockThemes {
   green,
   blue,
-  fuchsia
+  fuchsia,
+  valentine
 }

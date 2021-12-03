@@ -1,4 +1,5 @@
 import 'package:clock_challenge/helpers/utils.dart';
+import 'package:clock_challenge/services/clockanimationservice.dart';
 import 'package:clock_challenge/services/clockthemeservice.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -6,6 +7,8 @@ import 'package:provider/provider.dart';
 class ClockThemeColorSelection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
+    ClockAnimationService animService = Provider.of<ClockAnimationService>(context, listen: false);
 
     return Consumer<ClockThemeService>(
       builder: (context, cService, child) {
@@ -30,6 +33,7 @@ class ClockThemeColorSelection extends StatelessWidget {
                   splashColor: Colors.white.withOpacity(0.3),
                   onTap: () {
                     cService.updateTheme(ClockThemes.green);
+                    animService.setClockAnimationTheme(ClockThemes.green);
                   },
                   child: const SizedBox(
                     width: 30,
@@ -59,6 +63,8 @@ class ClockThemeColorSelection extends StatelessWidget {
                   splashColor: Colors.white.withOpacity(0.3),
                   onTap: () {
                     cService.updateTheme(ClockThemes.fuchsia);
+                    animService.setClockAnimationTheme(ClockThemes.fuchsia);
+
                   },
                   child: const SizedBox(
                     width: 30,
@@ -88,10 +94,43 @@ class ClockThemeColorSelection extends StatelessWidget {
                   splashColor: Colors.white.withOpacity(0.3),
                   onTap: () {
                     cService.updateTheme(ClockThemes.blue);
+                    animService.setClockAnimationTheme(ClockThemes.blue);
                   },
                   child: const SizedBox(
                     width: 30,
                     height: 30,
+                    child: Icon(Icons.ac_unit, color: Colors.white, size: 20),
+                  ),
+                )
+              ),
+            ),
+          ),
+          AnimatedContainer(
+            duration: const Duration(milliseconds: 250),
+            curve: Curves.easeInOut,
+            margin: const EdgeInsets.all(10),
+            padding: const EdgeInsets.all(5),
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Utils.clockTheme == ClockThemes.valentine ? Utils.getColorFromTheme(ClockThemes.valentine) : Colors.transparent,
+                width: 3
+              ),
+              borderRadius: BorderRadius.circular(50)
+            ),
+            child: ClipOval(
+              child: Material(
+                color: Utils.getColorFromTheme(ClockThemes.valentine),
+                child: InkWell(
+                  highlightColor: Colors.white.withOpacity(0.1),
+                  splashColor: Colors.white.withOpacity(0.3),
+                  onTap: () {
+                    cService.updateTheme(ClockThemes.valentine);
+                    animService.setClockAnimationTheme(ClockThemes.valentine);
+                  },
+                  child: const SizedBox(
+                    width: 30,
+                    height: 30,
+                    child: Icon(Icons.favorite, color: Colors.white, size: 20),
                   ),
                 )
               ),
