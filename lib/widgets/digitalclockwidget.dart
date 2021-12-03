@@ -4,6 +4,7 @@ import 'package:clock_challenge/helpers/clocktheme.dart';
 import 'package:clock_challenge/helpers/utils.dart';
 import 'package:clock_challenge/widgets/clockthemecolorselection.dart';
 import 'package:clock_challenge/widgets/clockwidget.dart';
+import 'package:clock_challenge/widgets/digitalclockoptions.dart';
 import 'package:flutter/material.dart';
 
 class DigitalClockWidget extends StatefulWidget {
@@ -51,48 +52,6 @@ class DigitalClockWidgetState extends State<DigitalClockWidget> {
     vNumber5.value = int.parse(fifthValue);
     vNumber6.value = int.parse(sixthValue);
 
-    List<Widget> options = [
-      Container(
-        child: const Icon(Icons.timer, color: Colors.white, size: 30),
-        decoration: BoxDecoration(
-          boxShadow:[
-            BoxShadow(color: clockTheme.shadow2!, blurRadius: 20, offset: Offset.zero)
-          ]
-        ),
-      ),
-      Container(
-        child: const Icon(Icons.wb_sunny, color: Colors.white, size: 30),
-        decoration: BoxDecoration(
-          boxShadow:[
-            BoxShadow(color: clockTheme.shadow2!, blurRadius: 20, offset: Offset.zero)
-          ]
-        ),
-      ),
-      Container(
-        child: const Icon(Icons.palette, color: Colors.white, size: 30),
-        decoration: BoxDecoration(
-          boxShadow:[
-            BoxShadow(color: clockTheme.shadow2!, blurRadius: 20, offset: Offset.zero)
-          ]
-        ),
-      ),
-      Container(
-        child: const Icon(Icons.thermostat, color: Colors.white, size: 30),
-        decoration: BoxDecoration(
-          boxShadow:[
-            BoxShadow(color: clockTheme.shadow2!, blurRadius: 20, offset: Offset.zero)
-          ]
-        ),
-      ),
-      Container(
-        child: const Icon(Icons.calendar_today, color: Colors.white, size: 30),
-        decoration: BoxDecoration(
-          boxShadow:[
-            BoxShadow(color: clockTheme.shadow2!, blurRadius: 20, offset: Offset.zero)
-          ]
-        ),
-      )
-    ];
 
     return Stack(
       children: [
@@ -167,16 +126,7 @@ class DigitalClockWidgetState extends State<DigitalClockWidget> {
           padding: const EdgeInsets.all(40.0),
           child: Align(
             alignment: MediaQuery.of(context).orientation == Orientation.portrait ? Alignment.bottomCenter : Alignment.centerRight,
-            child: MediaQuery.of(context).orientation == Orientation.portrait ? 
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: options,
-            ) :
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: options,
-            )
+            child: DigitalClockOptions()
           ),
         ),
         Padding(
