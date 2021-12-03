@@ -13,7 +13,7 @@ class DigitalClockWidget extends StatefulWidget {
   final String? seconds;
   final bool? isTimeEllapsing;
 
-  const DigitalClockWidget({this.hours, this.minutes, this.seconds, this.isTimeEllapsing = true});
+  const DigitalClockWidget({Key? key, this.hours, this.minutes, this.seconds, this.isTimeEllapsing = true}) : super(key: key);
 
   @override
   DigitalClockWidgetState createState() => DigitalClockWidgetState();

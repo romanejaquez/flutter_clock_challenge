@@ -29,7 +29,6 @@ class _DigitalClockState extends State<DigitalClock> {
     _updateModel();
   }
 
-
   @override
   void dispose() {
     _timer.cancel();

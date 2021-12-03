@@ -10,8 +10,18 @@ class ClockThemeColorSelection extends StatelessWidget {
     return Consumer<ClockThemeService>(
       builder: (context, cService, child) {
         List<Widget> options = [
-          Container(
+          AnimatedContainer(
+            duration: const Duration(milliseconds: 250),
+            curve: Curves.easeInOut,
             margin: const EdgeInsets.all(10),
+            padding: const EdgeInsets.all(5),
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Utils.clockTheme == ClockThemes.green ? Utils.getColorFromTheme(ClockThemes.green) : Colors.transparent,
+                width: 3
+              ),
+              borderRadius: BorderRadius.circular(50)
+            ),
             child: ClipOval(
               child: Material(
                 color: Utils.getColorFromTheme(ClockThemes.green),
@@ -29,8 +39,18 @@ class ClockThemeColorSelection extends StatelessWidget {
               ),
             ),
           ),
-          Container(
+          AnimatedContainer(
+            duration: const Duration(milliseconds: 250),
+            curve: Curves.easeInOut,
             margin: const EdgeInsets.all(10),
+            padding: const EdgeInsets.all(5),
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Utils.clockTheme == ClockThemes.fuchsia ? Utils.getColorFromTheme(ClockThemes.fuchsia) : Colors.transparent, 
+                width: 3
+              ),
+              borderRadius: BorderRadius.circular(50)
+            ),
             child: ClipOval(
               child: Material(
                 color: Utils.getColorFromTheme(ClockThemes.fuchsia),
@@ -48,8 +68,18 @@ class ClockThemeColorSelection extends StatelessWidget {
               ),
             ),
           ),
-          Container(
+          AnimatedContainer(
+            duration: const Duration(milliseconds: 250),
+            curve: Curves.easeInOut,
             margin: const EdgeInsets.all(10),
+            padding: const EdgeInsets.all(5),
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Utils.clockTheme == ClockThemes.blue ? Utils.getColorFromTheme(ClockThemes.blue) : Colors.transparent,
+                width: 3
+              ),
+              borderRadius: BorderRadius.circular(50)
+            ),
             child: ClipOval(
               child: Material(
                 color: Utils.getColorFromTheme(ClockThemes.blue),
@@ -79,7 +109,7 @@ class ClockThemeColorSelection extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: options
                   ),
-                  padding: const EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(5),
                   decoration: BoxDecoration(
                     color: Colors.black.withOpacity(0.5),
                     borderRadius: BorderRadius.circular(50)
@@ -96,7 +126,7 @@ class ClockThemeColorSelection extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: options
               ),
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(5),
               decoration: BoxDecoration(
                 color: Colors.black.withOpacity(0.5),
                 borderRadius: BorderRadius.circular(50)
