@@ -116,7 +116,8 @@ class ClockWidgetState extends State<ClockWidget> {
             SizedBox(
               width: digitalWidthHeight,
               height: digitalWidthHeight,
-              child: Icon(animService.themeIcon, color: Colors.white, size: 40))
+              child: animService.themeIcon
+            )
               :
             Container(
                       width: digitalWidthHeight,

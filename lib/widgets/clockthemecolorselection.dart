@@ -20,20 +20,20 @@ class ClockThemeColorSelection extends StatelessWidget {
             padding: const EdgeInsets.all(5),
             decoration: BoxDecoration(
               border: Border.all(
-                color: Utils.clockTheme == ClockThemes.green ? Utils.getColorFromTheme(ClockThemes.green) : Colors.transparent,
+                color: Utils.clockTheme == ClockThemes.leaf ? Utils.getColorFromTheme(ClockThemes.leaf) : Colors.transparent,
                 width: 3
               ),
               borderRadius: BorderRadius.circular(50)
             ),
             child: ClipOval(
               child: Material(
-                color: Utils.getColorFromTheme(ClockThemes.green),
+                color: Utils.getColorFromTheme(ClockThemes.leaf),
                 child: InkWell(
                   highlightColor: Colors.white.withOpacity(0.1),
                   splashColor: Colors.white.withOpacity(0.3),
                   onTap: () {
-                    cService.updateTheme(ClockThemes.green);
-                    animService.setClockAnimationTheme(ClockThemes.green);
+                    cService.updateTheme(ClockThemes.leaf);
+                    animService.setClockAnimationTheme(ClockThemes.leaf);
                   },
                   child: const SizedBox(
                     width: 30,
@@ -50,20 +50,20 @@ class ClockThemeColorSelection extends StatelessWidget {
             padding: const EdgeInsets.all(5),
             decoration: BoxDecoration(
               border: Border.all(
-                color: Utils.clockTheme == ClockThemes.fuchsia ? Utils.getColorFromTheme(ClockThemes.fuchsia) : Colors.transparent, 
+                color: Utils.clockTheme == ClockThemes.ring ? Utils.getColorFromTheme(ClockThemes.ring) : Colors.transparent, 
                 width: 3
               ),
               borderRadius: BorderRadius.circular(50)
             ),
             child: ClipOval(
               child: Material(
-                color: Utils.getColorFromTheme(ClockThemes.fuchsia),
+                color: Utils.getColorFromTheme(ClockThemes.ring),
                 child: InkWell(
                   highlightColor: Colors.white.withOpacity(0.1),
                   splashColor: Colors.white.withOpacity(0.3),
                   onTap: () {
-                    cService.updateTheme(ClockThemes.fuchsia);
-                    animService.setClockAnimationTheme(ClockThemes.fuchsia);
+                    cService.updateTheme(ClockThemes.ring);
+                    animService.setClockAnimationTheme(ClockThemes.ring);
 
                   },
                   child: const SizedBox(
@@ -81,20 +81,20 @@ class ClockThemeColorSelection extends StatelessWidget {
             padding: const EdgeInsets.all(5),
             decoration: BoxDecoration(
               border: Border.all(
-                color: Utils.clockTheme == ClockThemes.blue ? Utils.getColorFromTheme(ClockThemes.blue) : Colors.transparent,
+                color: Utils.clockTheme == ClockThemes.flutter ? Utils.getColorFromTheme(ClockThemes.flutter) : Colors.transparent,
                 width: 3
               ),
               borderRadius: BorderRadius.circular(50)
             ),
             child: ClipOval(
               child: Material(
-                color: Utils.getColorFromTheme(ClockThemes.blue),
+                color: Utils.getColorFromTheme(ClockThemes.flutter),
                 child: InkWell(
                   highlightColor: Colors.white.withOpacity(0.1),
                   splashColor: Colors.white.withOpacity(0.3),
                   onTap: () {
-                    cService.updateTheme(ClockThemes.blue);
-                    animService.setClockAnimationTheme(ClockThemes.blue);
+                    cService.updateTheme(ClockThemes.flutter);
+                    animService.setClockAnimationTheme(ClockThemes.flutter);
                   },
                   child: const SizedBox(
                     width: 30,
@@ -112,20 +112,20 @@ class ClockThemeColorSelection extends StatelessWidget {
             padding: const EdgeInsets.all(5),
             decoration: BoxDecoration(
               border: Border.all(
-                color: Utils.clockTheme == ClockThemes.valentine ? Utils.getColorFromTheme(ClockThemes.valentine) : Colors.transparent,
+                color: Utils.clockTheme == ClockThemes.heart ? Utils.getColorFromTheme(ClockThemes.heart) : Colors.transparent,
                 width: 3
               ),
               borderRadius: BorderRadius.circular(50)
             ),
             child: ClipOval(
               child: Material(
-                color: Utils.getColorFromTheme(ClockThemes.valentine),
+                color: Utils.getColorFromTheme(ClockThemes.heart),
                 child: InkWell(
                   highlightColor: Colors.white.withOpacity(0.1),
                   splashColor: Colors.white.withOpacity(0.3),
                   onTap: () {
-                    cService.updateTheme(ClockThemes.valentine);
-                    animService.setClockAnimationTheme(ClockThemes.valentine);
+                    cService.updateTheme(ClockThemes.heart);
+                    animService.setClockAnimationTheme(ClockThemes.heart);
                   },
                   child: const SizedBox(
                     width: 30,

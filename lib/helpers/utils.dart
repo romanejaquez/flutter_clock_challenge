@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 
 class Utils {
 
-  static ClockThemes clockTheme = ClockThemes.green;
+  static ClockThemes clockTheme = ClockThemes.leaf;
 
   static Map<ClockThemes, ClockTheme> themes = {
-    ClockThemes.green : ClockTheme(
+    ClockThemes.leaf : ClockTheme(
       shadow1: const Color(0xFF0A340C).withOpacity(0.2),
       shadow2: Colors.green,
-      main: Colors.green,
+      main: const Color(0xFF4CAF50),
       color1: const Color(0xFF102310),
       color2: const Color(0xFF1E4620),
       color3: const Color(0xFF2D6930),
@@ -17,7 +17,7 @@ class Utils {
       color5: const Color(0xFF4DAF50),
       colorShadow: const Color(0xFF0A340C).withOpacity(0.5)
     ),
-    ClockThemes.fuchsia : ClockTheme(
+    ClockThemes.ring : ClockTheme(
       shadow1: const Color(0xFF6E0A4B).withOpacity(0.2),
       shadow2: const Color(0xFFE342AB),
       color1: const Color(0xFF6E0A4B),
@@ -28,7 +28,7 @@ class Utils {
       main: const Color(0xFFFA4DBE),
       colorShadow: const Color(0xFF6E0A4B).withOpacity(0.5)
     ),
-    ClockThemes.blue : ClockTheme(
+    ClockThemes.flutter : ClockTheme(
       shadow1: const Color(0xFF00557B).withOpacity(0.2),
       shadow2: const Color(0xFF00B1FF),
       color1: const Color(0xFF00354D),
@@ -39,7 +39,7 @@ class Utils {
       main: const Color(0xFF00B1FF),
       colorShadow: const Color(0xFF00354D).withOpacity(0.5)
     ),
-    ClockThemes.valentine : ClockTheme(
+    ClockThemes.heart : ClockTheme(
       shadow1: const Color(0xFF880C0C).withOpacity(0.2),
       shadow2: const Color(0xFFCC1515),
       color1: const Color(0xFF880C0C),
@@ -49,6 +49,17 @@ class Utils {
       color5: const Color(0xFFFD2A2A),
       main: const Color(0xFFFD2A2A),
       colorShadow: const Color(0xFF880C0C).withOpacity(0.5)
+    ),
+    ClockThemes.firebase : ClockTheme(
+      shadow1: const Color(0xFFB63A00).withOpacity(0.2),
+      shadow2: const Color(0xFF9A5103),
+      color1: const Color(0xFFD67A18),
+      color2: const Color(0xFFDB862A),
+      color3: const Color(0xFFEA9A44),
+      color4: const Color(0xFFF8B064),
+      color5: const Color(0xFFFFCC95),
+      main: const Color(0xFFFF7D19),
+      colorShadow: const Color(0xFFEE5700).withOpacity(0.5)
     )
   };
 
@@ -62,8 +73,9 @@ class Utils {
 }
 
 enum ClockThemes {
-  green,
-  blue,
-  fuchsia,
-  valentine
+  firebase,
+  flutter,
+  heart,
+  leaf,
+  ring
 }

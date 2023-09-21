@@ -1,5 +1,6 @@
 import 'package:clock_challenge/services/clockanimationservice.dart';
 import 'package:clock_challenge/services/clockthemeservice.dart';
+import 'package:clock_challenge/widgets/clockoptionsanimation.dart';
 import 'package:clock_challenge/widgets/clockthemeanimationwrapper.dart';
 import 'package:clock_challenge/widgets/digitalclock.dart';
 import 'package:flutter/material.dart';
@@ -32,8 +33,21 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Stack(
         children: [
-          const DigitalClock(),
+          const Positioned(
+            left: -90,
+            top: 0,
+            bottom: 0,
+            right: 0,
+            child: DigitalClock()
+          ),
           ClockThemeAnimationWrapper(),
+          Center(
+            child: Transform.scale(
+              scale: 1.125,
+              alignment: Alignment.center,
+              child: ClockOptionsAnimation()
+            )
+          ),
         ]
       )
     );

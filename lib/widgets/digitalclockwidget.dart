@@ -58,7 +58,7 @@ class DigitalClockWidgetState extends State<DigitalClockWidget> {
         Transform.scale(
           scale: 0.9,
           child: Center(
-            child: MediaQuery.of(context).orientation == Orientation.landscape ?
+            child: //MediaQuery.of(context).orientation == Orientation.portrait ?
              Stack(
               children: [
                 Align(
@@ -93,49 +93,49 @@ class DigitalClockWidgetState extends State<DigitalClockWidget> {
                   )
                 )
               ],
-            ) :
-            Padding(
-              padding: const EdgeInsets.all(30.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Row(
-                    children: [
-                      ClockWidget(widgetNumber: vNumber1),
-                      ClockWidget(widgetNumber: vNumber2)
-                    ]
-                  ),
-                  Row(
-                    children: [
-                      ClockWidget(widgetNumber: vNumber3),
-                      ClockWidget(widgetNumber: vNumber4)
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      ClockWidget(widgetNumber: vNumber5),
-                      ClockWidget(widgetNumber: vNumber6)
-                    ],
-                  )
-                ],
-              ),
             )
+            // child: Padding(
+            //   padding: const EdgeInsets.all(30.0),
+            //   child: Column(
+            //     mainAxisAlignment: MainAxisAlignment.center,
+            //     children: [
+            //       Row(
+            //         children: [
+            //           ClockWidget(widgetNumber: vNumber1),
+            //           ClockWidget(widgetNumber: vNumber2)
+            //         ]
+            //       ),
+            //       Row(
+            //         children: [
+            //           ClockWidget(widgetNumber: vNumber3),
+            //           ClockWidget(widgetNumber: vNumber4)
+            //         ],
+            //       ),
+            //       Row(
+            //         children: [
+            //           ClockWidget(widgetNumber: vNumber5),
+            //           ClockWidget(widgetNumber: vNumber6)
+            //         ],
+            //       )
+            //     ],
+            //   ),
+            // )
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.all(40.0),
-          child: Align(
-            alignment: MediaQuery.of(context).orientation == Orientation.portrait ? Alignment.bottomCenter : Alignment.centerRight,
-            child: DigitalClockOptions()
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(40.0),
-          child: Align(
-            alignment: MediaQuery.of(context).orientation == Orientation.portrait ? Alignment.bottomCenter : Alignment.centerRight,
-            child: ClockThemeColorSelection()
-          )
-        )
+        // Padding(
+        //   padding: const EdgeInsets.all(40.0),
+        //   child: Align(
+        //     alignment: Alignment.bottomCenter,
+        //     child: DigitalClockOptions()
+        //   ),
+        // ),
+        // Padding(
+        //   padding: const EdgeInsets.all(40.0),
+        //   child: Align(
+        //     alignment: Alignment.bottomCenter,
+        //     child: DigitalClockOptions()
+        //   ),
+        // ),
       ],
     );
   }

@@ -1,16 +1,19 @@
 import 'package:clock_challenge/helpers/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class ClockAnimationService extends ChangeNotifier {
 
-  Map<ClockThemes, IconData> animationThemes = {
-    ClockThemes.valentine: Icons.favorite,
-    ClockThemes.blue: Icons.ac_unit,
-    ClockThemes.fuchsia: Icons.trip_origin
+  Map<ClockThemes, Widget> animationThemes = {
+    ClockThemes.heart: SvgPicture.asset('./assets/imgs/heart.svg', color: Colors.white),
+    ClockThemes.flutter: SvgPicture.asset('./assets/imgs/flutter.svg', color: Colors.white),
+    ClockThemes.ring: SvgPicture.asset('./assets/imgs/ring.svg', color: Colors.white),
+    ClockThemes.firebase: SvgPicture.asset('./assets/imgs/firebase.svg', color: Colors.white),
+    ClockThemes.leaf: SvgPicture.asset('./assets/imgs/leaf.svg', color: Colors.white),
   };
 
   bool showClockAnimation = false;
-  IconData? themeIcon;
+  Widget? themeIcon;
 
   void setClockAnimationTheme(ClockThemes clockTheme) {
     resetAnimation();
