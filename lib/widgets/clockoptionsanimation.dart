@@ -4,6 +4,7 @@ import 'package:clock_challenge/helpers/utils.dart';
 import 'package:clock_challenge/services/clockanimationservice.dart';
 import 'package:clock_challenge/services/clockthemeservice.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
 import 'package:rive/rive.dart';
 
@@ -32,7 +33,7 @@ class _ClockOptionsAnimationState extends State<ClockOptionsAnimation> {
       onInit: onRiveInit,
     );
 
-    themeSwitcher = Timer.periodic(const Duration(seconds: 30), (timer) {
+    themeSwitcher = Timer.periodic(const Duration(seconds: 15), (timer) {
       triggerThemeChange();
     });
   }
@@ -43,10 +44,15 @@ class _ClockOptionsAnimationState extends State<ClockOptionsAnimation> {
       context.read<ClockThemeService>().updateTheme(currentTheme);
       context.read<ClockAnimationService>().setClockAnimationTheme(currentTheme);
       triggers[currentTheme]!.fire();
-      themeIndex++;
+      
+      setState(() {
+        themeIndex++;
+      });
     }
     else {
-      themeIndex = 0;
+      setState(() {
+        themeIndex = 0;
+      });
     }
   }
 
@@ -72,6 +78,47 @@ class _ClockOptionsAnimationState extends State<ClockOptionsAnimation> {
   
   @override
   Widget build(BuildContext context) {
-    return animation;
+
+    var valueTarget = themeIndex == ClockThemes.firebase.index ? 0 : 1.0;
+
+    return Stack(
+      children: [
+        animation,
+          Positioned(
+            bottom: 0,
+            left: 0, right: 0,
+            child: Container(
+              margin: const EdgeInsets.only(bottom: 80),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset('./assets/imgs/qrhintsparky.png',
+                    width: 130, height: 130,
+                    fit: BoxFit.contain
+                  ),
+                  Image.asset('./assets/imgs/f3_1_qrcode.png',
+                    width: 130, height: 130,
+                    fit: BoxFit.contain
+                  )
+                ],
+              ),
+              height: 200,
+              padding: const EdgeInsets.all(30),
+              color: Colors.white,
+            ),
+          ).animate(
+            target: valueTarget.toDouble(),
+            onComplete: (controller) {
+              Future.delayed(10.seconds, () {
+                controller.reverse().whenComplete(() => controller.reset());
+              });
+            },
+          ).slideY(
+            begin: 1, end: 0,
+            duration: 1.seconds,
+            curve: Curves.easeInOut,
+        )
+      ]
+    );
   }
 }

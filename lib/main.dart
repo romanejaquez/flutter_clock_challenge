@@ -4,9 +4,16 @@ import 'package:clock_challenge/widgets/clockoptionsanimation.dart';
 import 'package:clock_challenge/widgets/clockthemeanimationwrapper.dart';
 import 'package:clock_challenge/widgets/digitalclock.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
+import 'package:timezone/timezone.dart' as tz;
+import 'package:timezone/data/latest.dart' as tz;
 
-void main() {
+void main() async {
+
+  await initializeDateFormatting('cs_CZ', null);
+  tz.initializeTimeZones();
+
   runApp(
     MultiProvider(
       providers: [
@@ -31,6 +38,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Clock',
       debugShowCheckedModeBanner: false,
+      builder: (context, child) {
+        
+        return child!;
+      },
       home: Stack(
         children: [
           const Positioned(
@@ -45,7 +56,7 @@ class MyApp extends StatelessWidget {
             child: Transform.scale(
               scale: 1.125,
               alignment: Alignment.center,
-              child: ClockOptionsAnimation()
+              child: const ClockOptionsAnimation()
             )
           ),
         ]

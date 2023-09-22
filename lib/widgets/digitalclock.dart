@@ -5,8 +5,11 @@ import 'package:clock_challenge/widgets/clockthemeanimationwrapper.dart';
 import 'package:clock_challenge/widgets/digitalclockbg.dart';
 import 'package:clock_challenge/widgets/digitalclockwidget.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:timezone/timezone.dart' as tz;
+import 'package:timezone/data/latest.dart' as tz;
 
 /// A basic digital clock.
 ///
@@ -29,6 +32,7 @@ class _DigitalClockState extends State<DigitalClock> {
   @override
   void initState() {
     super.initState();
+
     _updateTime();
     _updateModel();
   }
@@ -47,17 +51,21 @@ class _DigitalClockState extends State<DigitalClock> {
 
   void _updateTime() {
     setState(() {
-      _dateTime = DateTime.now();
+      
+      final loc = tz.getLocation('Europe/Prague');
+      var time = tz.TZDateTime.now(loc);
 
+      final _dateTime = tz.TZDateTime(loc, time.year, time.month, time.day, time.hour, time.minute, time.second);
+  
       _timer = Timer(
         const Duration(seconds: 1) - Duration(milliseconds: _dateTime.millisecond),
         _updateTime,
       );
 
-      hour = DateFormat('hh')
+      hour = DateFormat('hh', 'cs_CZ')
           .format(_dateTime);
-      minute = DateFormat('mm').format(_dateTime);
-      second = DateFormat('ss').format(_dateTime);
+      minute = DateFormat('mm', 'cs_CZ').format(_dateTime);
+      second = DateFormat('ss', 'cs_CZ').format(_dateTime);
       timeIndicator = !timeIndicator;
     });
   }
