@@ -53,11 +53,7 @@ class MyApp extends StatelessWidget {
           ),
           ClockThemeAnimationWrapper(),
           Center(
-            child: Transform.scale(
-              scale: 1.125,
-              alignment: Alignment.center,
-              child: const ClockOptionsAnimation()
-            )
+            child: const ClockOptionsAnimation()
           ),
         ]
       )

@@ -20,9 +20,12 @@ class _ClockOptionsAnimationState extends State<ClockOptionsAnimation> {
 
   late StateMachineController ctrl;
   late RiveAnimation animation;
+  AnimationController? qrcodeAnimCtrl;
   Map<ClockThemes, SMITrigger> triggers = {};
   Timer themeSwitcher = Timer(Duration.zero, () {});
   int themeIndex = 0;
+  double valueTarget = 0.0;
+  Timer qrcodeDelay = Timer(Duration.zero, () {});
 
   @override
   void initState() {
@@ -47,6 +50,7 @@ class _ClockOptionsAnimationState extends State<ClockOptionsAnimation> {
       
       setState(() {
         themeIndex++;
+        valueTarget = themeIndex == ClockThemes.firebase.index ? 0.0 : 1.0;
       });
     }
     else {
@@ -56,9 +60,36 @@ class _ClockOptionsAnimationState extends State<ClockOptionsAnimation> {
     }
   }
 
+  void triggerSelectedTheme(ClockThemes theme) {
+    context.read<ClockThemeService>().updateTheme(theme);
+      context.read<ClockAnimationService>().setClockAnimationTheme(theme);
+      triggers[theme]!.fire();
+
+    if (qrcodeAnimCtrl != null) {
+      qrcodeAnimCtrl!.reset();
+      qrcodeAnimCtrl!.stop(canceled: true);
+      qrcodeDelay.cancel();
+    }
+    
+
+    setState(() {
+      themeIndex = theme.index;
+
+      if (theme == ClockThemes.firebase) {
+        if (qrcodeAnimCtrl != null) {
+          qrcodeAnimCtrl!.forward();
+        }
+        
+        valueTarget = themeIndex == ClockThemes.firebase.index ? 0.0 : 1.0;
+      }
+    });
+  }
+
   @override
   void dispose() {
     themeSwitcher.cancel();
+    qrcodeDelay.cancel();
+    qrcodeAnimCtrl!.dispose();
     ctrl.dispose();
     super.dispose();
   }
@@ -79,11 +110,92 @@ class _ClockOptionsAnimationState extends State<ClockOptionsAnimation> {
   @override
   Widget build(BuildContext context) {
 
-    var valueTarget = themeIndex == ClockThemes.firebase.index ? 0 : 1.0;
-
     return Stack(
+      clipBehavior: Clip.none,
       children: [
-        animation,
+        SizedBox(
+          width: MediaQuery.sizeOf(context).height,
+          height: MediaQuery.sizeOf(context).height,
+          child: animation),
+
+        // buttons
+
+        // firebase
+        Positioned(
+          right: 250,
+          top: 170,
+          child: GestureDetector(
+            onTap: () {
+              triggerSelectedTheme(ClockThemes.firebase);
+            },
+            child: Container(
+              color: Colors.transparent,
+              width: 120, height: 120,
+            ),
+          )
+        ),
+
+        // flutter
+        Positioned(
+          right: 140,
+          top: 300,
+          child: GestureDetector(
+            onTap: () {
+              triggerSelectedTheme(ClockThemes.flutter);
+            },
+            child: Container(
+              color: Colors.transparent,
+              width: 120, height: 120,
+            ),
+          )
+        ),
+
+        // heart
+        Positioned(
+          right: 100,
+          top: 480,
+          child: GestureDetector(
+            onTap: () {
+              triggerSelectedTheme(ClockThemes.heart);
+            },
+            child: Container(
+              color: Colors.transparent,
+              width: 120, height: 120,
+            ),
+          )
+        ),
+
+        // leaf
+        Positioned(
+          right: 140,
+          top: 650,
+          child: GestureDetector(
+            onTap: () {
+              triggerSelectedTheme(ClockThemes.leaf);
+            },
+            child: Container(
+              color: Colors.transparent,
+              width: 120, height: 120,
+            ),
+          )
+        ),
+
+        // ring
+        Positioned(
+          right: 250,
+          bottom: 160,
+          child: GestureDetector(
+            onTap: () {
+              triggerSelectedTheme(ClockThemes.ring);
+            },
+            child: Container(
+              color: Colors.transparent,
+              width: 120, height: 120,
+            ),
+          )
+        ),
+
+
           Positioned(
             bottom: 0,
             left: 0, right: 0,
@@ -93,24 +205,28 @@ class _ClockOptionsAnimationState extends State<ClockOptionsAnimation> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset('./assets/imgs/qrhintsparky.png',
-                    width: 130, height: 130,
+                    width: 150, height: 150,
                     fit: BoxFit.contain
                   ),
                   Image.asset('./assets/imgs/f3_1_qrcode.png',
-                    width: 130, height: 130,
+                    width: 180, height: 180,
                     fit: BoxFit.contain
                   )
                 ],
               ),
-              height: 200,
+              height: 300,
               padding: const EdgeInsets.all(30),
               color: Colors.white,
             ),
           ).animate(
-            target: valueTarget.toDouble(),
+            target: valueTarget,
             onComplete: (controller) {
-              Future.delayed(10.seconds, () {
-                controller.reverse().whenComplete(() => controller.reset());
+              qrcodeAnimCtrl = controller;
+              qrcodeDelay = Timer(10.seconds, () {
+                controller.reverse().whenComplete(() {
+                  valueTarget = 0.0;
+                  controller.reset();
+                });
               });
             },
           ).slideY(
